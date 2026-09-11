@@ -1,0 +1,9 @@
+package br.com.mindshub.identity.application.async;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+}
