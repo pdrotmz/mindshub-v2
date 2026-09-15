@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@PasswordMatches
+@PasswordMatches(password = "password", confirmation = "confirmPassword")
 public record RegisterUserRequest(
 
         @Schema(description = "username", example = "pdrotmz")

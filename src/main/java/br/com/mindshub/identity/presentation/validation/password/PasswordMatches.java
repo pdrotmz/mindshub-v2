@@ -13,6 +13,10 @@ public @interface PasswordMatches {
 
     String message() default "Passwords do not match";
 
+    String password();
+
+    String confirmation();
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
