@@ -1,6 +1,9 @@
 package br.com.mindshub.identity.domain.model;
 
+import br.com.mindshub.identity.application.exception.InvalidUserRoleException;
+import br.com.mindshub.identity.application.exception.UserAlreadyTeacherException;
 import br.com.mindshub.identity.domain.enums.Role;
+import br.com.mindshub.identity.domain.exception.UserAlreadyDeletedException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,6 +18,7 @@ public class User {
     private boolean active;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
 
     public User() {
     }
@@ -59,12 +63,39 @@ public class User {
         this.password = password;
     }
 
+    public void updatePassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
+
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void promoteToTeacher() {
+
+        if (this.role == Role.TEACHER) {
+            throw new UserAlreadyTeacherException("This user is already a teacher.");
+        }
+
+        if (role != Role.STUDENT) {
+            throw new InvalidUserRoleException(
+                    "Only students can be promoted to teacher."
+            );
+        }
+
+        this.role = Role.TEACHER;
+    }
+
+    public void promoteToAdmin() {
+
+        if (this.role != Role.TEACHER && this.role != Role.STUDENT) {
+            throw new InvalidUserRoleException("Only students and teachers can be promoted to admin.");
+        }
+        this.role = Role.ADMIN;
     }
 
     public boolean isActive() {
@@ -93,5 +124,23 @@ public class User {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public void delete() {
+        if (this.deletedAt != null) {
+            throw new UserAlreadyDeletedException("User is already deleted.");
+        }
+    }
+
+    public boolean isDeleted() {
+        return deletedAt != null;
     }
 }

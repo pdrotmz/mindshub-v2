@@ -26,7 +26,7 @@ public class UserEntity {
     @Column(name = "uuid", nullable = false, updatable = false, unique = true)
     private UUID uuid;
 
-    @Column(name = "username", nullable = false, length = 100)
+    @Column(name = "username", nullable = false, length = 100, unique = true)
     private String username;
 
     @Column(name = "email", nullable = false, unique = true, length = 255)
@@ -37,7 +37,7 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(name = "role", nullable = false, updatable = false)
+    @Column(name = "role", nullable = false)
     private Role userRole;
 
     @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
@@ -48,6 +48,9 @@ public class UserEntity {
 
     @Column(name = "updated_at", nullable = false, updatable = true, columnDefinition = "TIMESTAMP")
     private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at", columnDefinition = "TIMESTAMP")
+    private LocalDateTime deletedAt;
 
     @PrePersist
     protected void onCreate() {

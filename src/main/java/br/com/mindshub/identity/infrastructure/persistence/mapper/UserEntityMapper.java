@@ -19,6 +19,7 @@ public class UserEntityMapper {
         user.setActive(entity.isActive());
         user.setCreatedAt(entity.getCreatedAt());
         user.setUpdatedAt(entity.getUpdatedAt());
+        user.setDeletedAt(entity.getDeletedAt());
 
         return user;
     }
@@ -35,6 +36,7 @@ public class UserEntityMapper {
         entity.setActive(user.isActive());
         entity.setCreatedAt(user.getCreatedAt());
         entity.setUpdatedAt(user.getUpdatedAt());
+        entity.setDeletedAt(user.getDeletedAt());
 
         return entity;
     }
