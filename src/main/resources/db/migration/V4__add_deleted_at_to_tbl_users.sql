@@ -1,0 +1,1 @@
+ALTER TABLE tbl_users ADD COLUMN deleted_at TIMESTAMP NULL;
