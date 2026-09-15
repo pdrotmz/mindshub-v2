@@ -1,9 +1,9 @@
-package br.com.mindshub.identity.application.usecase.impl;
+package br.com.mindshub.identity.application.usecase.impl.auth;
 
 import br.com.mindshub.identity.application.event.EmailVerificationRequestedEvent;
 import br.com.mindshub.identity.application.exception.EmailVerificationTokenNotFoundException;
 import br.com.mindshub.identity.application.port.EventPublisher;
-import br.com.mindshub.identity.application.usecase.VerifyEmailUseCase;
+import br.com.mindshub.identity.application.usecase.auth.VerifyEmailUseCase;
 import br.com.mindshub.identity.application.exception.EmailAlreadyVerifiedException;
 import br.com.mindshub.identity.domain.exception.EmailVerificationTokenExpiredException;
 import br.com.mindshub.identity.domain.exception.UserNotFoundException;

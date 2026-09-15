@@ -1,16 +1,16 @@
-package br.com.mindshub.identity.application.usecase.impl;
+package br.com.mindshub.identity.application.usecase.impl.auth;
 
 import br.com.mindshub.identity.application.event.EmailVerificationRequestedEvent;
 import br.com.mindshub.identity.application.exception.EmailAlreadyRegisteredException;
 import br.com.mindshub.identity.application.port.EventPublisher;
-import br.com.mindshub.identity.application.usecase.RegisterUserUseCase;
+import br.com.mindshub.identity.application.usecase.auth.RegisterUserUseCase;
 import br.com.mindshub.identity.domain.enums.Role;
 import br.com.mindshub.identity.domain.model.EmailVerificationToken;
 import br.com.mindshub.identity.domain.model.User;
 import br.com.mindshub.identity.domain.repository.EmailVerificationTokenRepository;
 import br.com.mindshub.identity.domain.repository.UserRepository;
 import br.com.mindshub.identity.presentation.dto.request.RegisterUserRequest;
-import br.com.mindshub.identity.presentation.dto.response.RegisterUserResponse;
+import br.com.mindshub.identity.presentation.dto.response.auth.RegisterUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

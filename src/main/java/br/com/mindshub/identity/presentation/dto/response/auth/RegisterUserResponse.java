@@ -1,4 +1,4 @@
-package br.com.mindshub.identity.presentation.dto.response;
+package br.com.mindshub.identity.presentation.dto.response.auth;
 
 import br.com.mindshub.identity.domain.enums.Role;
 import br.com.mindshub.identity.domain.model.User;
@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record RegisterUserResponse(
+
+        // TODO: Document this
         Long id,
         UUID uuid,
         String username,

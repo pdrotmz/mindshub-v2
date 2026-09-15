@@ -1,4 +1,4 @@
-package br.com.mindshub.identity.presentation.dto.response;
+package br.com.mindshub.identity.presentation.dto.response.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

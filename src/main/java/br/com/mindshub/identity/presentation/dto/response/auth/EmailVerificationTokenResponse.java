@@ -1,4 +1,4 @@
-package br.com.mindshub.identity.presentation.dto.response;
+package br.com.mindshub.identity.presentation.dto.response.auth;
 
 import br.com.mindshub.identity.domain.model.EmailVerificationToken;
 

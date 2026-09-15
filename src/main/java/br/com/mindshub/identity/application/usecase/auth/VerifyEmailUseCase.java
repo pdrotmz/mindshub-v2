@@ -1,4 +1,4 @@
-package br.com.mindshub.identity.application.usecase;
+package br.com.mindshub.identity.application.usecase.auth;
 
 public interface VerifyEmailUseCase {
 

@@ -1,11 +1,11 @@
 package br.com.mindshub.identity.presentation.controller.auth;
 
-import br.com.mindshub.identity.application.usecase.LoginUserUseCase;
-import br.com.mindshub.identity.application.usecase.RegisterUserUseCase;
-import br.com.mindshub.identity.application.usecase.VerifyEmailUseCase;
+import br.com.mindshub.identity.application.usecase.auth.LoginUserUseCase;
+import br.com.mindshub.identity.application.usecase.auth.RegisterUserUseCase;
+import br.com.mindshub.identity.application.usecase.auth.VerifyEmailUseCase;
 import br.com.mindshub.identity.presentation.dto.request.LoginUserRequest;
 import br.com.mindshub.identity.presentation.dto.request.RegisterUserRequest;
-import br.com.mindshub.identity.presentation.dto.response.LoginUserResponse;
+import br.com.mindshub.identity.presentation.dto.response.auth.LoginUserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

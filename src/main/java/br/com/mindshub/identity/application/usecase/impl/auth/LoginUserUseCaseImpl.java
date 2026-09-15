@@ -1,16 +1,15 @@
-package br.com.mindshub.identity.application.usecase.impl;
+package br.com.mindshub.identity.application.usecase.impl.auth;
 
 import br.com.mindshub.identity.application.exception.InvalidCredentialsException;
-import br.com.mindshub.identity.application.usecase.LoginUserUseCase;
+import br.com.mindshub.identity.application.usecase.auth.LoginUserUseCase;
 import br.com.mindshub.identity.infrastructure.security.jwt.JwtService;
 import br.com.mindshub.identity.presentation.dto.request.LoginUserRequest;
-import br.com.mindshub.identity.presentation.dto.response.LoginUserResponse;
+import br.com.mindshub.identity.presentation.dto.response.auth.LoginUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
