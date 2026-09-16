@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    container_name: mindshub-dev-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_DEV}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_DEV}
+      POSTGRES_USER: ${POSTGRES_USER_DEV}
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

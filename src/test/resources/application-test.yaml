@@ -1,0 +1,15 @@
+spring:
+  docker:
+    compose:
+      enabled: false
+  mail:
+    host: localhost
+    port: 1025
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+# Supply a fictitious signing key through the test runner environment.
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}

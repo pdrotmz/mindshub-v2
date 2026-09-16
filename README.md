@@ -73,6 +73,38 @@ The main objectives are:
 
 ---
 
+## Tests and coverage
+
+Run the complete test suite and generate the JaCoCo coverage report:
+
+```bash
+./mvnw clean verify
+```
+
+Java 21 and Docker are required. The context integration test starts PostgreSQL
+with Testcontainers. Spring tests activate the `test` profile and load
+`src/test/resources/application-test.yaml`. Export `JWT_SECRET` (at least 32 bytes)
+and `JWT_EXPIRATION` (milliseconds) before running Maven, or configure them in the
+IDE test runner. Use a fictitious signing key for tests. The test runner does not
+load `.env` through the application `main()` method. SMTP points to localhost
+without credentials.
+
+Open `target/site/jacoco/index.html` in a browser to explore coverage by package,
+class, method, line and branch. XML and CSV reports are generated in the same
+directory. The report includes all production classes, with no coverage exclusions
+or minimum threshold configured.
+
+To run only identity tests and generate their coverage (Docker is also required
+for the persistence adapter tests):
+
+```bash
+./mvnw clean test jacoco:report -Dtest='br.com.mindshub.identity.**'
+```
+
+This narrower run measures only the coverage exercised by identity tests.
+
+---
+
 ## 📚 Documentation
 
 Project documentation can be found inside the `docs` directory.
