@@ -127,4 +127,22 @@ public class UserTest {
 
         assertTrue(user.isDeleted());
     }
+    @org.junit.jupiter.params.ParameterizedTest
+    @org.junit.jupiter.params.provider.NullAndEmptySource
+    @org.junit.jupiter.params.provider.ValueSource(strings = {" ", "\t"})
+    void shouldRejectEmptyPasswordWithoutChangingCurrentPassword(String password) {
+        User user = new User();
+        user.setPassword("encoded-password");
+        assertThrows(IllegalArgumentException.class, () -> user.updatePassword(password));
+        assertEquals("encoded-password", user.getPassword());
+    }
+
+    @Test
+    void shouldRejectRepeatedDeletionWithoutChangingDeletionDate() {
+        User user = new User();
+        user.delete();
+        var deletedAt = user.getDeletedAt();
+        assertThrows(br.com.mindshub.identity.domain.exception.UserAlreadyDeletedException.class, user::delete);
+        assertEquals(deletedAt, user.getDeletedAt());
+    }
 }
