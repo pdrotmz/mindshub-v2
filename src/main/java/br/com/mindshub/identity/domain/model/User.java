@@ -1,8 +1,11 @@
 package br.com.mindshub.identity.domain.model;
 
 import br.com.mindshub.identity.application.exception.InvalidUserRoleException;
+import br.com.mindshub.identity.application.exception.PasswordAlreadyInUseException;
+import br.com.mindshub.identity.application.exception.UserAlreadyAdminException;
 import br.com.mindshub.identity.application.exception.UserAlreadyTeacherException;
 import br.com.mindshub.identity.domain.enums.Role;
+import br.com.mindshub.identity.domain.exception.UserAlreadyActivatedException;
 import br.com.mindshub.identity.domain.exception.UserAlreadyDeletedException;
 
 import java.time.LocalDateTime;
@@ -64,6 +67,14 @@ public class User {
     }
 
     public void updatePassword(String encodedPassword) {
+        if (encodedPassword == null || encodedPassword.trim().isEmpty()) {
+            throw new IllegalArgumentException("The new password must not be empty.");
+        }
+
+        if (encodedPassword != null && encodedPassword.equals(this.password)) {
+            throw new PasswordAlreadyInUseException("The new password must be different the current");
+        }
+
         this.password = encodedPassword;
     }
 
@@ -82,9 +93,7 @@ public class User {
         }
 
         if (role != Role.STUDENT) {
-            throw new InvalidUserRoleException(
-                    "Only students can be promoted to teacher."
-            );
+            throw new InvalidUserRoleException("Only students can be promoted to teacher.");
         }
 
         this.role = Role.TEACHER;
@@ -92,8 +101,12 @@ public class User {
 
     public void promoteToAdmin() {
 
-        if (this.role != Role.TEACHER && this.role != Role.STUDENT) {
-            throw new InvalidUserRoleException("Only students and teachers can be promoted to admin.");
+        if (this.role == Role.ADMIN) {
+            throw new UserAlreadyAdminException("This user is already an admin.");
+        }
+
+        if (this.role != Role.TEACHER) {
+            throw new InvalidUserRoleException("Only teachers can be promoted to admin.");
         }
         this.role = Role.ADMIN;
     }
@@ -107,6 +120,11 @@ public class User {
     }
 
     public void activate() {
+
+        if (this.active) {
+            throw new UserAlreadyActivatedException("User account is already activated.");
+        }
+
         this.active = true;
     }
 
@@ -138,6 +156,8 @@ public class User {
         if (this.deletedAt != null) {
             throw new UserAlreadyDeletedException("User is already deleted.");
         }
+
+        this.deletedAt = LocalDateTime.now();
     }
 
     public boolean isDeleted() {
