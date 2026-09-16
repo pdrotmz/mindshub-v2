@@ -19,7 +19,7 @@ public class EmailVerificationToken {
         token.setUserId(userId);
         token.setToken(UUID.randomUUID().toString());
         token.setCreatedAt(now);
-        token.setExpiresAt(now.plusMinutes(5));
+        token.setExpiresAt(now.plusHours(2));
 
         return token;
     }
