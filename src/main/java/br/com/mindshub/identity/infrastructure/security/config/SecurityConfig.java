@@ -59,6 +59,8 @@ public class SecurityConfig {
                                 "/api/v1/teachers/promote/{uuid}/teacher"
                         ).hasRole("ADMIN")
 
+                        .requestMatchers("/api/v1/users/me").authenticated()
+
                         .requestMatchers(
                                 // USERS
                                 "/api/v1/users",
@@ -67,8 +69,6 @@ public class SecurityConfig {
                                 "/api/v1/users/{uuid}",
                                 "/api/v1/users/{uuid}/delete"
                         ).hasRole("ADMIN")
-
-                        .requestMatchers("/api/v1/users/me").authenticated()
 
                         .requestMatchers(
                                 // ADMIN

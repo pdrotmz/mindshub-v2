@@ -10,6 +10,8 @@ import br.com.mindshub.identity.presentation.dto.request.UpdateUsersInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class UpdateUsersInfoUseCaseImpl implements UpdateUsersInfoUseCase {
@@ -21,11 +23,13 @@ public class UpdateUsersInfoUseCaseImpl implements UpdateUsersInfoUseCase {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User was not found."));
 
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (!Objects.equals(user.getUsername(), request.username())
+                && userRepository.existsByUsername(request.username())) {
             throw new UsernameAlreadyRegisteredException("Username already registered.");
         }
 
-        if (userRepository.existsByEmail(email)) {
+        if (!Objects.equals(user.getEmail(), request.email())
+                && userRepository.existsByEmail(request.email())) {
             throw new EmailAlreadyRegisteredException("Email already registered.");
         }
 
